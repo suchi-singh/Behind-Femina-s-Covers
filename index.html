@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Femina’s Covers Through Colour and Text</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0e0d0c;
+            --surface: #1a1916;
+            --text: #f0ece3;
+            --muted: #7a7570;
+            --accent: #c8a96e;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Mono', monospace;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        header { text-align: center; margin-bottom: 80px; }
+        header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 400; line-height: 1.1; margin-bottom: 15px; }
+        header h1 em { font-style: italic; color: var(--accent); }
+        header p { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+
+        section { margin-bottom: 100px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent); margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        .abstract-box { background: var(--surface); padding: 40px; border-radius: 4px; border-left: 4px solid var(--accent); }
+
+        /* Colour Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
+        .decade-card { background: var(--surface); border: 1px solid #2a2826; padding: 28px; transition: transform 0.3s ease; }
+        .decade-card:hover { transform: translateY(-4px); border-color: #3a3830; }
+        .decade-label { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+        .decade-note { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+        .swatches { display: flex; height: 64px; border-radius: 2px; overflow: hidden; margin-bottom: 20px; }
+        .swatch { flex: 1; position: relative; cursor: crosshair; transition: flex 0.3s ease; }
+        .swatch:hover { flex: 2.5; }
+        .hex-tip { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); font-size: 0.48rem; background: rgba(0,0,0,0.8); padding: 2px 4px; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+        .swatch:hover .hex-tip { opacity: 1; }
+        .hex-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+        .hex-item { display: flex; align-items: center; gap: 8px; font-size: 0.6rem; color: var(--muted); }
+        .hex-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+        /* Analysis Sections */
+        .analysis-flex { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+        .analysis-text { flex: 1; min-width: 300px; }
+        .analysis-image { flex: 1; min-width: 300px; background: #fff; padding: 10px; border-radius: 4px; }
+        .analysis-image img { width: 100%; height: auto; display: block; }
+        
+        .method-step { margin-bottom: 20px; }
+        .method-step strong { color: var(--accent); }
+
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid #222; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1><em>Femina</em>’s Covers: 1959–2024</h1>
+        <p>A Digital Humanities Analysis of Colour & Language</p>
+    </header>
+
+    <section id="abstract">
+        <div class="abstract-box">
+            <h2>Project Abstract</h2>
+            <p>This project analyzes over 220 cover pages of <em>Femina</em> (1959–2024) to trace how India’s leading women’s magazine visually and textually constructs the "new" Indian woman. By combining text mining of cover lines with digital color sampling, we reveal a shift from muted, earthy tones to high-saturation global aesthetics, paralleled by a linguistic transition from domesticity to "unstoppable" consumerist empowerment.</p>
+        </div>
+    </section>
+
+    <section id="methodology">
+        <h2>Methodology</h2>
+        <div class="method-step">
+            <strong>1. Data Collection:</strong> Transcribed cover text and sampled 9–11 dominant hex codes per cover using ImageColorPicker from a corpus of 220+ issues.
+        </div>
+        <div class="method-step">
+            <strong>2. Text Analysis:</strong> Utilized <em>Voyant Tools</em> for distant reading, identifying word frequencies and collocations across seven decades.
+        </div>
+        <div class="method-step">
+            <strong>3. Visual Analysis:</strong> Aggregated hex codes to derive a 10-colour representative palette per decade, visualized through a custom HTML/CSS interface.
+        </div>
+    </section>
+
+    <section id="visual-palettes">
+        <h2>Decade-wise Colour Palettes</h2>
+        <div class="grid" id="palette-grid"></div>
+    </section>
+
+    <section id="text-analysis">
+        <h2>Textual Evolution</h2>
+        <div class="analysis-flex">
+            <div class="analysis-text">
+                <p>Analysis via Voyant Tools reveals a significant discursive shift. While "Beauty" and "Fashion" remain persistent, the 2010s and 2020s see a massive surge in the term <strong>"Unstoppable"</strong>, signifying a move toward "popular feminism" and career-oriented self-fashioning.</p>
+                <br>
+                <ul style="padding-left: 20px;">
+                    <li><strong>1950s/60s:</strong> Focus on "Flair", "Diwali", and "Charmers".</li>
+                    <li><strong>1990s:</strong> Liberalization era introduces "Supermodel", "Designer", and "Substance".</li>
+                    <li><strong>2020s:</strong> Peak frequency of "Unstoppable", "Power", and "Digital".</li>
+                </ul>
+            </div>
+            <div class="analysis-image">
+                <p style="color:#000; font-size: 0.6rem; text-align: center; margin-bottom: 5px;">Voyant Word Cloud: High Frequency Terms</p>
+                <img src="https://via.placeholder.com/500x350/ffffff/000000?text=Voyant+Word+Cloud+Placeholder" alt="Voyant Word Cloud">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Jesus and Mary College · DSE: Digital Humanities 2026</p>
+    </footer>
+</div>
+
+<script>
+const decades = [
+    { label: "1959", note: "Partial — July, Aug, Oct, Nov", colors: ["#d9491a","#e08a3b","#c4bc6a","#8f8a64","#5d8a88","#b85e50","#d09040","#834b27","#c6a077","#4d1d0e"] },
+    { label: "1960s", note: "1960–1969", colors: ["#c08a56","#d97040","#6da068","#bdb090","#4a6d85","#7a6450","#477b55","#c9ab7c","#b48763","#3a3030"] },
+    { label: "1970s", note: "1970–1979", colors: ["#b7a130","#a94040","#8c7c5c","#ab7b5a","#415e5a","#894a09","#cbb88c","#956d4b","#312e2c","#b2a899"] },
+    { label: "1980s", note: "1980–1989", colors: ["#ba4a4b","#2f7c9d","#c9bf95","#b88253","#413b40","#597d72","#d78d62","#cca38e","#df3d40","#e9b25c"] },
+    { label: "1990s", note: "1990–1999", colors: ["#dc4345","#9a3734","#2ba3b3","#1a2c85","#f3ac68","#e6805f","#c29078","#78606b","#c9c49b","#3f352e"] },
+    { label: "2000s", note: "2000–2009", colors: ["#cc3b37","#cd5e38","#453890","#959a61","#e59333","#edcdb9","#2e2922","#ebb584","#b28b79","#d04084"] },
+    { label: "2010s", note: "2010–2019", colors: ["#d8383a","#26aa97","#e5bc27","#93c53c","#4a2224","#e0bba0","#dbd3d5","#6e9bb0","#c89180","#3a2c2c"] },
+    { label: "2020–2024", note: "Partial — through 2024", colors: ["#e92226","#1f1e1b","#74a3ce","#c2303c","#6328a0","#d83634","#63b2d0","#e2c779","#c15054","#459297"] }
+];
+
+const grid = document.getElementById('palette-grid');
+
+decades.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'decade-card';
+    const swatchHTML = d.colors.map(c => `<div class="swatch" style="background:${c}"><span class="hex-tip">${c}</span></div>`).join('');
+    const hexHTML = d.colors.map(c => `<div class="hex-item"><div class="hex-dot" style="background:${c}"></div><span>${c}</span></div>`).join('');
+
+    card.innerHTML = `
+        <div class="decade-label">${d.label}</div>
+        <div class="decade-note">${d.note}</div>
+        <div class="swatches">${swatchHTML}</div>
+        <div class="hex-list">${hexHTML}</div>
+    `;
+    grid.appendChild(card);
+});
+</script>
+
+</body>
+</html>
