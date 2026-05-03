@@ -635,6 +635,7 @@
 <!-- NAV -->
 <nav>
   <a href="#overview">Overview</a>
+  <a href="#composite">Composite</a>
   <a href="#methodology">Methodology</a>
   <a href="#tagline">Tagline</a>
   <a href="#text">Text Analysis</a>
@@ -651,16 +652,28 @@
     <h2 class="section-title">The <em>Project</em></h2>
     <div class="section-underline"></div>
 
-    <div class="overview-collage">
-      <img src="COLLAGE_1769.jpg" alt="Composite overlay of Femina covers 1959–2024" />
-    </div>
-
+   <div class="overview-collage">
+  <img src="COLLAGE_1769.jpg" alt="Composite overlay of Femina covers 1959–2024" />
+  <p style="font-family:var(--body);font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);text-align:center;padding:10px 0 4px;">Composite Overlay &nbsp;·&nbsp; All Covers &nbsp;·&nbsp; 1959–2024</p>
+</div>
+    
     <div class="abstract-box">
       <p>This project analyses over 220 cover pages of <em>Femina</em> magazine between 1959–2024 to trace how the magazine visually and textually constructed and reconstructed the "new" Indian womanhood across six decades of socio-cultural change.</p>
       <p>Using two digital humanities methods, computational text analysis (Voyant Tools) and dominant-colour extraction (ImageColorPicker.com), the study builds a dual dataset visualised through a custom HTML interface. Theoretically, the project draws on feminist visual culture studies and work on Indian women's magazines to read covers as sites where national identity, consumer culture, and gendered embodiment intersect.</p>
       <p>The findings show a shift from warm ochres and muted earth tones in the 1950s–70s, through the bold pop aesthetics of the 1980s and the high-contrast reds and blues of the liberalisation era, to the saturated, globally inflected palettes of the 2010s–2020s. Decade-specific distinctive words reveal a parallel shift from domestically oriented, beauty-family frames to vocabularies of career, self-fashioning, and global lifestyle, while still centring narrow, upper-class femininities.</p>
     </div>
   </section>
+
+  <section id="composite">
+  <p class="section-label">Visual Method</p>
+  <h2 class="section-title">The <em>Composite Overlay</em></h2>
+  <div class="section-underline"></div>
+  <div class="prose">
+    <p>The composite overlay presented above was created by layering all covers used in the analysis within each decade at increased transparency, then arranged into a single collage to identify visual patterns across time.</p>
+    <p>The earlier layers are darker, more varied in tone, and show dance forms, facial expressions, and body language that are closer to the viewer, more expressive, and more diverse in their orientations. The later composites are lighter, more centrally composed, and more uniform with faces consistently forward-facing, compositions more symmetrical, the overall effect more curated, more "produced."</p>
+    <p>This visual shift from expressive diversity to curated uniformity parallels the textual shift from varied, experimental cover language to the more formulaic vocabulary of the post-liberalisation era.</p>
+  </div>
+</section>
 
   <!-- METHODOLOGY — publication card removed, GitHub note added as small text -->
   <section id="methodology">
@@ -681,7 +694,7 @@
       </div>
     </div>
     <div class="prose mt-md">
-      <p>The text-colour pairing was a deliberate methodological choice: a magazine cover communicates simultaneously through language and image, and to analyse only one would be incomplete. The dataset spans approximately 220+ covers; early decades are underrepresented because fewer covers have been preserved in accessible digital form, with the 2010s yielding the densest coverage.</p>
+      <p>The text-colour pairing was a deliberate methodological choice as a magazine cover communicates simultaneously through language and image, and to analyse only one would be incomplete. The dataset spans approximately 220+ covers; early decades are underrepresented because fewer covers have been preserved in accessible digital form, with the 2010s yielding the densest coverage.</p>
     </div>
 
   </section>
@@ -692,7 +705,7 @@
     <h2 class="section-title">The Evolution of the <em>Tagline</em></h2>
     <div class="section-underline"></div>
     <div class="prose">
-      <p>Femina's tagline is apart from being brand's identity, is also the magazine's statement about the identity of its reader. The shift from <em>flair</em> to <em>substance</em> to <em>generation</em> to <em>unstoppable</em> documents the magazine's evolving construction of what Indian womanhood should aspire to be.</p>
+      <p>Femina's tagline, apart from being the brand's identity, is also the magazine's statement about the identity of its reader. The shift from <em>flair</em> to <em>substance</em> to <em>generation</em> to <em>unstoppable</em> documents the magazine's evolving construction of what Indian womanhood should aspire to be.</p>
       <p>That <em>unstoppable</em> appears on every cover in the 2010s and 2020s as a permanent feature of the cover surface can be read as a form of ideological saturation. The reader is told, issue after issue, that they are unstoppable, whether reading about fashion, love, or recipes.</p>
     </div>
     <div class="timeline mt-lg">
@@ -714,7 +727,7 @@
       <div class="tl-item">
         <p class="tl-decade">2010s – 2020s</p>
         <p class="tl-word">Unstoppable</p>
-        <p class="tl-desc">Individual empowerment as brand. Recurring on every cover, this tagline represents the commodification of feminist vocabulary with empowerment as a product to be purchased and a self to be performed.</p>
+        <p class="tl-desc">Individual empowerment as brand. Recurring on every cover, this tagline represents the commodification of feminist vocabulary where empowerment is a product to be purchased and a self to be performed.</p>
       </div>
     </div>
   </section>
@@ -725,7 +738,7 @@
     <h2 class="section-title">Textual Analysis by <em>Decade</em></h2>
     <div class="section-underline"></div>
     <div class="prose">
-      <p>The following word clouds are generated from the cover text <strong>without taglines</strong>, so that the editorial vocabulary (headlines, cover lines, subheadings) is visible without the tagline inflating frequency counts. Each cloud represents the statistically distinctive words of that decade relative to the full corpus.</p>
+      <p>Even though the following word clouds are generated from the cover text with the <strong>taglines</strong>, their analysis is done without them as taglines inflate the frequency counts. Each cloud represents the statistically distinctive words of that decade relative to the full corpus.</p>
     </div>
 
     <div class="mt-lg">
@@ -757,7 +770,7 @@
           <span style="background:#312e2c"></span><span style="background:#b2a899"></span>
         </div>
         <div class="wc-img"><img src="WC_1970S.jpg" alt="Word cloud 1970s" /></div>
-        <p class="decade-text"><em>Women</em> is by far the dominant term, followed by <em>indian</em>, <em>cookbook</em>, <em>miss</em>, <em>community</em>, <em>law</em>, <em>london</em>, and terms related to national life: <em>vote</em>, <em>religion</em>, <em>national</em>, <em>crisis</em>, <em>candidates</em>, <em>fiction</em>. This is the only decade in which Femina consistently positioned women as political citizens. Covers included images of Indira Gandhi; the Emergency (1975–77) and the Indian women's movement both register in the vocabulary. The word <em>law</em> appears in no other decade. Yet <em>cookbook</em> persists alongside <em>community</em> and <em>law</em>, making sure domesticity and civic life coexist.</p>
+        <p class="decade-text"><em>Women</em> is by far the dominant term, followed by <em>indian</em>, <em>cookbook</em>, <em>miss</em>, <em>community</em>, <em>law</em>, <em>london</em>, and terms related to national life: <em>vote</em>, <em>religion</em>, <em>national</em>, <em>crisis</em>, <em>candidates</em>, <em>fiction</em>. This is the only decade in which <em>Femina</em> consistently positioned women as political citizens. Covers included images of Indira Gandhi; the Emergency (1975–77) and the Indian women's movement both also register in the vocabulary. The word <em>law</em> appears in no other decade. Yet <em>cookbook</em> persists alongside <em>community</em> and <em>law</em>, making sure domesticity and civic life coexist.</p>
       </div>
 
       <div class="decade-divider"></div>
@@ -773,7 +786,7 @@
           <span style="background:#df3d40"></span><span style="background:#e9b25c"></span>
         </div>
         <div class="wc-img"><img src="WC_1980S.jpg" alt="Word cloud 1980s" /></div>
-        <p class="decade-text">Dominated by <em>indian</em>, <em>family</em>, <em>diwali</em>, <em>new</em>, <em>super</em>, <em>model</em>, <em>saree</em>, <em>contest</em>. The appearance of <em>model</em>, <em>super</em>, and <em>contest</em> is new as this is the decade in which Femina's Miss India contest gains significant prominence, and the vocabulary of competitive femininity enters the cover language. Yet <em>indian</em>, <em>family</em>, <em>diwali</em>, and <em>saree</em> persist, signalling the co-existence of global aspiration with continued cultural anchoring. The 1980s have the highest vocabulary density (0.927) and readability index (13.858) of any decade.</p>
+        <p class="decade-text">The word cloud is dominated by <em>indian</em>, <em>family</em>, <em>diwali</em>, <em>new</em>, <em>super</em>, <em>model</em>, <em>saree</em>, and <em>contest</em>. The appearance of <em>model</em>, <em>super</em>, and <em>contest</em> is new as this is the decade in which Femina's Miss India contest gains significant prominence, and the vocabulary of competitive femininity enters the cover language. Yet <em>indian</em>, <em>family</em>, <em>diwali</em>, and <em>saree</em> persist, signalling the co-existence of global aspiration with continued cultural anchoring. The 1980s have the highest vocabulary density (0.927) and readability index (13.858) of any decade.</p>
       </div>
 
       <div class="decade-divider"></div>
@@ -789,7 +802,7 @@
           <span style="background:#c9c49b"></span><span style="background:#3f352e"></span>
         </div>
         <div class="wc-img"><img src="WC_1990S.jpg" alt="Word cloud 1990s" /></div>
-        <p class="decade-text">The dominant terms are <em>woman</em>, <em>women</em>, <em>men</em>, <em>story</em>, <em>miss</em>, <em>new</em>, <em>love</em>, <em>guide</em>, and in the second half of the decade, <em>supermodel</em>, <em>celebrity</em>, <em>designer</em>, <em>aishwarya</em>. The economic liberalisation of 1991 opened Indian markets to global brands and aesthetics. Femina navigates this by using the language of substance and Indian womanhood alongside celebrity, designer goods, and global aspiration, defining tensions of the decade.</p>
+        <p class="decade-text">The dominant terms are <em>woman</em>, <em>women</em>, <em>men</em>, <em>story</em>, <em>miss</em>, <em>new</em>, <em>love</em>, <em>guide</em>, and in the second half of the decade, <em>supermodel</em>, <em>celebrity</em>, <em>designer</em>, <em>aishwarya</em>. The economic liberalisation of 1991 opened Indian markets to global brands and aesthetics. <em>Femina</em> navigates this by using the language of 'substance' and Indian womanhood alongside <em>celebrity</em>, <em>designer goods</em>, and global aspiration, defining tensions of the decade.</p>
       </div>
 
       <div class="decade-divider"></div>
@@ -805,7 +818,7 @@
           <span style="background:#b28b79"></span><span style="background:#d04084"></span>
         </div>
         <div class="wc-img"><img src="WC_2000S.jpg" alt="Word cloud 2000s" /></div>
-        <p class="decade-text">Dominated by <em>generation</em>, <em>new</em>, <em>love</em>, <em>women</em>, <em>life</em>, <em>making</em>, with celebrity names such as <em>saif</em>, <em>sachin</em>, <em>sushmita</em>, <em>lara</em>, <em>dutta</em>, visible for the first time. Celebrity culture is now fully established. <em>Generation</em> and <em>making</em> suggest a discourse of collective progress. The 2000s also begin a trend of increasing engagement with female sexuality and civic life that peaks in the following decade. <em>Universe</em> reflects the continued centrality of beauty pageants to Femina's identity.</p>
+        <p class="decade-text">This word cloud is dominated by <em>generation</em>, <em>new</em>, <em>love</em>, <em>women</em>, and <em>life</em>, with celebrity names such as <em>saif</em>, <em>sachin</em>, <em>sushmita</em>, <em>lara</em>, <em>dutta</em>, visible for the first time. Celebrity culture is now fully established. <em>Generation</em> and <em>making</em> suggest a discourse of collective progress. The 2000s also begin a trend of increasing engagement with female sexuality and civic life that peaks in the following decade. <em>Universe</em> reflects the continued centrality of beauty pageants to Femina's identity.</p>
       </div>
 
       <div class="decade-divider"></div>
@@ -849,25 +862,25 @@
     <h2 class="section-title">Trend <em>Graphs</em></h2>
     <div class="section-underline"></div>
     <div class="prose">
-      <p>The following trend graphs track the frequency of key terms across the seven decade-documents, making visible patterns that close reading of individual covers cannot reveal. The asterisk (*) operator captures word families, for example, <em>work*</em> captures work, working, workers; <em>child*</em> captures child, children, childbirth.</p>
+      <p>The following trend graphs track the frequency of key terms across the seven decade-documents, making visible patterns that close reading of individual covers cannot reveal. The asterisk (*) operator captures word families, for example, <em>child*</em> captures child, children, childbirth.</p>
     </div>
 
     <div class="trend-group mt-lg">
       <p class="trend-title">Tagline Evolution &nbsp;·&nbsp; <em>flair / substance / generation / unstoppable</em></p>
       <div class="trend-img"><img src="TREND_TAGLINE.jpg" alt="Trend graph: tagline evolution" /></div>
-      <p class="trend-analysis">The graph tracks <em>flair</em> in the 1950s–60s, <em>substance*</em> peaking in the 1990s, <em>generation*</em> prominent in the 2000s, and <em>unstoppable</em> dominating from the 2010s onward and reaching its highest frequency in the 2020s. The progression from grace to depth to collective progress to individual empowerment-as-brand documents the magazine's evolving construction of aspirational Indian womanhood.</p>
+      <p class="trend-analysis">The graph tracks <em>flair</em> in the 1950s–60s, <em>substance*</em> peaking in the 1990s, <em>generation*</em> prominent in the 2000s, and <em>unstoppable</em> dominating from the 2010s onward and reaching its highest frequency in the 2020s. The progression from grace to depth to collective progress to individual empowerment-as-brand, documents the magazine's evolving construction of aspirational Indian womanhood.</p>
     </div>
 
     <div class="trend-group">
       <p class="trend-title">Work versus Marriage &nbsp;·&nbsp; <em>work* / career* / marriage* / wedding*</em></p>
       <div class="trend-img"><img src="TREND_WORK_MARRIAGE.jpg" alt="Trend graph: work vs marriage" /></div>
-      <p class="trend-analysis"><em>Work*</em> shows a clear upward trajectory from the 1990s, peaking in the 2010s (9 occurrences). <em>Career*</em> follows a similar but lower arc from the 2000s. Crucially, <em>marriage*</em> and <em>wedding*</em> peak simultaneously in the 2010s, suggesting that work and marriage are not positioned as opposites in Femina's vocabulary, but coexist as simultaneous aspirations for the same reader. The "double burden" of postfeminist theory is here made quantitatively legible.</p>
+      <p class="trend-analysis"><em>Work*</em> shows a clear upward trajectory from the 1990s, peaking in the 2010s (9 occurrences). <em>Career*</em> follows a similar but lower arc from the 2000s. Crucially, <em>marriage*</em> and <em>wedding*</em> peak simultaneously in the 2010s, suggesting that work and marriage are not positioned as opposites in <em>Femina</em>'s vocabulary, but coexist as simultaneous aspirations for the same reader. The "double burden" of postfeminist theory is here made quantitatively legible.</p>
     </div>
 
     <div class="trend-group">
       <p class="trend-title">Domestic Role Terms &nbsp;·&nbsp; <em>mother* / wife* / mom* / housewives*</em></p>
       <div class="trend-img"><img src="TREND_DOMESTIC.jpg" alt="Trend graph: domestic roles" /></div>
-      <p class="trend-analysis"><em>Mother*</em> peaks in the 1990s then rises again in the 2020s. <em>Mom*</em> is essentially absent until the 2010s, then rises sharply. <em>Housewives*</em> is nearly absent across the entire corpus. This pattern suggests that the language of maternal identity has been modernised, <em>mom*</em> replacing <em>housewife</em>, maintaining the maternal role while shedding its domestic-confinement connotations.</p>
+      <p class="trend-analysis"><em>Mother*</em> peaks in the 1990s then rises again in the 2020s. <em>Mom*</em> is essentially absent until the 2010s, then rises sharply. <em>Housewives*</em> is nearly absent across the entire corpus. This pattern suggests that the language of maternal identity has been modernised. <em>mom*</em> replaces <em>housewife</em>, maintaining the maternal role while removing its domestic-confinement connotations.</p>
     </div>
 
     <div class="trend-group">
@@ -899,10 +912,10 @@
     <h2 class="section-title">Interpretation &amp; <em>Conclusion</em></h2>
     <div class="section-underline"></div>
     <div class="prose">
-      <p>The persistence of <em>beauty</em>, <em>fashion</em>, <em>love</em>, and <em>skin</em> across all seven decades shows that, regardless of the political context (the Emergency, liberalisation, Nirbhaya, Section 377, the pandemic), Femina consistently positions Indian womanhood in the female body as the primary site of self-investment and social value. Following McRobbie and Gill, this is an instance of postfeminist sensibility: women interpellated as empowered consumers whose bodies must be continually improved, displayed, and managed.</p>
-      <p>The 1970s form a significant exception. The appearance of <em>law</em>, <em>vote</em>, <em>candidates</em>, and <em>community</em> marks the only decade in which Femina consistently positioned women as political citizens. The disappearance of this political vocabulary in the following decade indicates how quickly the possibilities opened by the Emergency and the women's movement were absorbed back into consumerist visual culture.</p>
-      <p>The work-versus-marriage trend graph visualises the "double burden" critiqued by postfeminist theory: in the 2010s, <em>work*</em> and <em>career*</em> rise alongside <em>marriage*</em>, <em>wedding*</em>, and <em>husband*</em>. The "new Indian woman" is not positioned as having to choose, she is expected to have and excel at both. This fully supports Menon's argument that career becomes another axis along which womanhood is commodified, without dismantling the expectation of heterosexual marriage.</p>
-      <p>Colour analysis extends this frame into visual semiotics. The chromatic shift from earthy, analogue palettes to saturated, globally legible chromatic shades tracks Femina's visual globalisation, a shift that documents how Indian femininity is staged for transnational circulation. Whether this represents cultural confidence or homogenisation under consumer capitalism remains an open question, but one that digital methods now make it possible to pose empirically.</p>
+      <p>The persistence of <em>beauty</em>, <em>fashion</em>, <em>love</em>, and <em>skin</em> across all seven decades shows that, regardless of the political context (the Emergency, liberalisation, Nirbhaya, Section 377, the pandemic), <em>Femina</em> consistently positions Indian womanhood in the female body as the primary site of self-investment and social value. Following McRobbie and Gill, this is an instance of postfeminist sensibility where women are interpellated as empowered consumers whose bodies must be continually improved, displayed, and managed.</p>
+      <p>The 1970s form a significant exception. The appearance of <em>law</em>, <em>vote</em>, <em>candidates</em>, and <em>community</em> marks the only decade in which <em>Femina</em> consistently positioned women as political citizens. The disappearance of this political vocabulary in the following decade indicates how quickly the possibilities opened by the Emergency and the women's movement were absorbed back into consumerist visual culture.</p>
+      <p>The work-versus-marriage trend graph visualises the "double burden" critiqued by postfeminist theory as in the 2010s, <em>work*</em> and <em>career*</em> rise alongside <em>marriage*</em>, <em>wedding*</em>, and <em>husband*</em>. The "new Indian woman" is not positioned as having to choose, she is expected to have and excel at both. This fully supports Menon's argument that career becomes another axis along which womanhood is commodified, without dismantling the expectation of heterosexual marriage.</p>
+      <p>Colour analysis extends this frame into visual semiotics. The chromatic shift from earthy, analogue palettes to saturated, globally legible chromatic shades tracks <em>Femina</em>'s visual globalisation, a shift that documents how Indian femininity is staged for transnational circulation. Whether this represents cultural confidence or homogenisation under consumer capitalism remains an open question, but one that digital methods now make it possible to pose empirically.</p>
     </div>
 
     <div class="finding-cards mt-lg">
@@ -940,7 +953,7 @@
   <p class="footer-title">Behind <em>Femina's</em> Covers</p>
   <div class="footer-rule"></div>
   <p>
-    A Digital Humanities Project &nbsp;·&nbsp; English Department<br>
+    A Digital Humanities Project &nbsp;·&nbsp; English Department &nbsp;·&nbsp;<br>
     Jesus and Mary College<br><br>
     Dataset: 220+ covers &nbsp;·&nbsp; 1959–2024 &nbsp;·&nbsp; Tools: Voyant Tools, ImageColorPicker.com
   </p>
@@ -990,10 +1003,22 @@
     };
 
     const swatches = d.colors.map(c =>
-      `<div style="flex:1;background:${c};transition:flex 0.22s ease;cursor:crosshair;"
-            onmouseenter="this.style.flex='2.5'" onmouseleave="this.style.flex='1'"
-            title="${c}"></div>`
-    ).join('');
+  `<div style="flex:1;background:${c};transition:flex 0.28s ease;cursor:crosshair;"
+        onmouseenter="this.style.flex='2.5'"
+        onmouseleave="if(!this.dataset.pinned){this.style.flex='1'}"
+        onclick="
+          if(this.dataset.pinned){
+            delete this.dataset.pinned;
+            this.style.flex='1';
+            this.style.outline='none';
+          } else {
+            this.dataset.pinned='1';
+            this.style.flex='3.5';
+            this.style.outline='2px solid rgba(255,255,255,0.6)';
+          }
+        "
+        title="${c}"></div>`
+).join('');
 
     const hexList = d.colors.map(c =>
       `<div style="display:flex;align-items:center;gap:5px;">
