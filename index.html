@@ -1,153 +1,1015 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Femina’s Covers Through Colour and Text</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind Femina's Covers · A Digital Humanities Analysis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --bg: #0e0d0c;
-            --surface: #1a1916;
-            --text: #f0ece3;
-            --muted: #7a7570;
-            --accent: #c8a96e;
-        }
+    :root {
+      --white:       #ffffff;
+      --off-white:   #f7f9fc;
+      --pale-blue:   #e8f0f9;
+      --blue-mid:    #b8cfe8;
+      --blue-accent: #5a8fc2;
+      --blue-hero:   #2596be;
+      --blue-deep:   #2c5f8a;
+      --ink:         #1a1c22;
+      --ink-soft:    #3d4250;
+      --muted:       #7a8494;
+      --rule:        #d0dce9;
+      --serif:       'Cormorant Garamond', Georgia, serif;
+      --body:        'Lato', 'Helvetica Neue', Arial, sans-serif;
+      --alt-serif:   'EB Garamond', Georgia, serif;
+    }
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'DM Mono', monospace;
-            line-height: 1.6;
-            padding: 40px 20px;
-        }
+    html { scroll-behavior: smooth; }
 
-        .container { max-width: 1100px; margin: 0 auto; }
+    body {
+      font-family: var(--body);
+      background: var(--white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        header { text-align: center; margin-bottom: 80px; }
-        header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 400; line-height: 1.1; margin-bottom: 15px; }
-        header h1 em { font-style: italic; color: var(--accent); }
-        header p { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--blue-hero);
+      text-align: center;
+      padding: 80px 24px 100px;
+    }
 
-        section { margin-bottom: 100px; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent); margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('COLLAGE_1769.jpg');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.18;
+      filter: saturate(0.5);
+    }
 
-        .abstract-box { background: var(--surface); padding: 40px; border-radius: 4px; border-left: 4px solid var(--accent); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(37,150,190,0.52) 0%,
+        rgba(37,150,190,0.70) 60%,
+        rgba(37,150,190,0.90) 100%
+      );
+    }
 
-        /* Colour Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
-        .decade-card { background: var(--surface); border: 1px solid #2a2826; padding: 28px; transition: transform 0.3s ease; }
-        .decade-card:hover { transform: translateY(-4px); border-color: #3a3830; }
-        .decade-label { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
-        .decade-note { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-        .swatches { display: flex; height: 64px; border-radius: 2px; overflow: hidden; margin-bottom: 20px; }
-        .swatch { flex: 1; position: relative; cursor: crosshair; transition: flex 0.3s ease; }
-        .swatch:hover { flex: 2.5; }
-        .hex-tip { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); font-size: 0.48rem; background: rgba(0,0,0,0.8); padding: 2px 4px; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
-        .swatch:hover .hex-tip { opacity: 1; }
-        .hex-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-        .hex-item { display: flex; align-items: center; gap: 8px; font-size: 0.6rem; color: var(--muted); }
-        .hex-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
 
-        /* Analysis Sections */
-        .analysis-flex { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
-        .analysis-text { flex: 1; min-width: 300px; }
-        .analysis-image { flex: 1; min-width: 300px; background: #fff; padding: 10px; border-radius: 4px; }
-        .analysis-image img { width: 100%; height: auto; display: block; }
-        
-        .method-step { margin-bottom: 20px; }
-        .method-step strong { color: var(--accent); }
+    /* Change #2: baby blue matching the Femina italic colour */
+    .hero-label {
+      font-family: var(--body);
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #c8ddf0;
+      margin-bottom: 20px;
+    }
 
-        footer { text-align: center; padding: 60px 0; border-top: 1px solid #222; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
-    </style>
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      line-height: 1.12;
+      color: #ffffff;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: #c8ddf0;
+    }
+
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: rgba(255,255,255,0.45);
+      margin: 28px auto;
+    }
+
+    .hero-sub {
+      font-family: var(--body);
+      font-weight: 300;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.9;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0;
+    }
+
+    nav a {
+      font-family: var(--body);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 16px 18px;
+      transition: color 0.2s, border-color 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--blue-deep);
+      border-bottom-color: var(--blue-accent);
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: 72px 0 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-family: var(--body);
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--blue-accent);
+      margin-bottom: 12px;
+    }
+
+    h2.section-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    h2.section-title em { font-style: italic; font-weight: 400; }
+
+    .section-underline {
+      width: 40px;
+      height: 2px;
+      background: var(--blue-accent);
+      margin-bottom: 36px;
+    }
+
+    /* ── BODY TEXT ── */
+    .prose {
+      font-family: var(--alt-serif);
+      font-size: 1.08rem;
+      line-height: 1.82;
+      color: var(--ink-soft);
+      max-width: 720px;
+    }
+
+    .prose p { margin-bottom: 1.2em; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { font-weight: 600; color: var(--ink); }
+
+    /* ── OVERVIEW BOX ── */
+    .overview-collage {
+      width: 100%;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      margin-bottom: 36px;
+    }
+
+    .overview-collage img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .abstract-box {
+      background: var(--pale-blue);
+      border-left: 3px solid var(--blue-accent);
+      padding: 32px 36px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .abstract-box p {
+      font-family: var(--alt-serif);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      margin-bottom: 1em;
+    }
+
+    .abstract-box p:last-child { margin-bottom: 0; }
+
+    /* ── METHODOLOGY ── */
+    .method-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 640px) { .method-row { grid-template-columns: 1fr; } }
+
+    .method-card {
+      border-top: 2px solid var(--blue-accent);
+      padding-top: 20px;
+    }
+
+    .method-card-title {
+      font-family: var(--body);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      margin-bottom: 10px;
+    }
+
+    .method-card p {
+      font-family: var(--alt-serif);
+      font-size: 0.94rem;
+      line-height: 1.74;
+      color: var(--ink-soft);
+    }
+
+    .github-note {
+      font-family: var(--body);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      line-height: 1.8;
+    }
+
+    .github-note a { color: var(--blue-accent); text-decoration: none; }
+    .github-note a:hover { text-decoration: underline; }
+
+    /* ── TAGLINE TIMELINE — line is now solid var(--blue-accent) ── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      margin-top: 4px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--blue-accent);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--blue-hero);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--blue-hero);
+    }
+
+    .tl-decade {
+      font-family: var(--body);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue-accent);
+      margin-bottom: 3px;
+    }
+
+    .tl-word {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 5px;
+    }
+
+    .tl-desc {
+      font-family: var(--alt-serif);
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    /* ── DECADE BLOCKS ── */
+    .decade-tag {
+      font-family: var(--body);
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--blue-accent);
+      margin-bottom: 6px;
+    }
+
+    .decade-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.55rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .decade-palette {
+      display: flex;
+      height: 10px;
+      border-radius: 3px;
+      overflow: hidden;
+      gap: 2px;
+      margin-bottom: 14px;
+    }
+
+    .decade-palette span { flex: 1; }
+
+    .wc-img {
+      width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      margin-bottom: 14px;
+      background: var(--off-white);
+      overflow: hidden;
+    }
+
+    .wc-img img { width: 100%; height: auto; display: block; }
+
+    .decade-text {
+      font-family: var(--alt-serif);
+      font-size: 0.97rem;
+      line-height: 1.78;
+      color: var(--ink-soft);
+    }
+
+    .decade-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--pale-blue);
+      margin: 48px 0;
+    }
+
+    /* ── COLOUR SECTION ── */
+    .colour-intro {
+      font-family: var(--alt-serif);
+      font-size: 1.05rem;
+      line-height: 1.82;
+      color: var(--ink-soft);
+      max-width: 720px;
+      margin-bottom: 40px;
+    }
+
+    /* Palette wrapper — styled to match original palette.html aesthetic */
+    .palette-outer-wrap {
+      background: #faf8f4;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 40px 36px 48px;
+    }
+
+    .palette-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .palette-header h3 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 1.8rem;
+      letter-spacing: 0.08em;
+      color: #1a1714;
+      text-transform: uppercase;
+    }
+
+    .palette-header h3 em {
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+
+    .palette-header p {
+      margin-top: 8px;
+      font-family: var(--body);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      color: #9a8f85;
+      text-transform: uppercase;
+    }
+
+    .palette-rule {
+      width: 40px;
+      height: 1px;
+      background: #c8b49a;
+      margin: 14px auto;
+    }
+
+    /* Palette swatches — Lato replaces DM Mono everywhere */
+    .pal-family-label {
+      font-family: var(--body);
+      font-size: 0.58rem;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: #b0a396;
+      margin-bottom: 10px;
+      margin-top: 36px;
+      padding-left: 2px;
+    }
+
+    .pal-family-label:first-of-type { margin-top: 0; }
+
+    .pal-row { display: flex; gap: 3px; margin-bottom: 3px; }
+
+    .pal-swatch {
+      flex: 1;
+      height: 80px;
+      cursor: default;
+      transition: transform 0.18s ease;
+    }
+
+    .pal-swatch:hover { transform: scaleY(1.06); }
+
+    .pal-hex-row { display: flex; gap: 3px; margin-bottom: 28px; }
+
+    .pal-hex-cell {
+      flex: 1;
+      text-align: center;
+      font-family: var(--body);
+      font-size: 0.46rem;
+      letter-spacing: 0.05em;
+      color: #a09488;
+      padding-top: 5px;
+    }
+
+    .pal-strip-label {
+      font-family: var(--body);
+      font-size: 0.58rem;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: #b0a396;
+      margin-bottom: 10px;
+      margin-top: 44px;
+    }
+
+    .pal-full-strip {
+      display: flex;
+      height: 28px;
+      width: 100%;
+      border-radius: 2px;
+      overflow: hidden;
+      gap: 2px;
+    }
+
+    .pal-strip-swatch { flex: 1; }
+
+    /* ── TREND SECTION ── */
+    .trend-group { margin-bottom: 56px; }
+
+    .trend-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .trend-img {
+      width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: var(--off-white);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .trend-img img { width: 100%; height: auto; display: block; }
+
+    .trend-analysis {
+      font-family: var(--alt-serif);
+      font-size: 0.97rem;
+      line-height: 1.78;
+      color: var(--ink-soft);
+    }
+
+    /* ── FINDING CARDS ── */
+    .finding-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 600px) { .finding-cards { grid-template-columns: 1fr; } }
+
+    .finding-card {
+      background: var(--pale-blue);
+      border-radius: 6px;
+      padding: 28px 28px 24px;
+    }
+
+    .finding-card-label {
+      font-family: var(--body);
+      font-size: 0.58rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--blue-accent);
+      margin-bottom: 8px;
+    }
+
+    .finding-card-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .finding-card p {
+      font-family: var(--alt-serif);
+      font-size: 0.94rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    footer .footer-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 1.3rem;
+      color: #a0aec0;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    footer p {
+      font-family: var(--body);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      line-height: 2;
+      color: #4a5568;
+    }
+
+    footer .footer-rule {
+      width: 32px;
+      height: 1px;
+      background: #2d3748;
+      margin: 20px auto;
+    }
+
+    /* ── UTIL ── */
+    .mt-sm { margin-top: 20px; }
+    .mt-md { margin-top: 36px; }
+    .mt-lg { margin-top: 52px; }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1><em>Femina</em>’s Covers: 1959–2024</h1>
-        <p>A Digital Humanities Analysis of Colour & Language</p>
-    </header>
-
-    <section id="abstract">
-        <div class="abstract-box">
-            <h2>Project Abstract</h2>
-            <p>This project analyzes over 220 cover pages of <em>Femina</em> (1959–2024) to trace how India’s leading women’s magazine visually and textually constructs the "new" Indian woman. By combining text mining of cover lines with digital color sampling, we reveal a shift from muted, earthy tones to high-saturation global aesthetics, paralleled by a linguistic transition from domesticity to "unstoppable" consumerist empowerment.</p>
-        </div>
-    </section>
-
-    <section id="methodology">
-        <h2>Methodology</h2>
-        <div class="method-step">
-            <strong>1. Data Collection:</strong> Transcribed cover text and sampled 9–11 dominant hex codes per cover using ImageColorPicker from a corpus of 220+ issues.
-        </div>
-        <div class="method-step">
-            <strong>2. Text Analysis:</strong> Utilized <em>Voyant Tools</em> for distant reading, identifying word frequencies and collocations across seven decades.
-        </div>
-        <div class="method-step">
-            <strong>3. Visual Analysis:</strong> Aggregated hex codes to derive a 10-colour representative palette per decade, visualized through a custom HTML/CSS interface.
-        </div>
-    </section>
-
-    <section id="visual-palettes">
-        <h2>Decade-wise Colour Palettes</h2>
-        <div class="grid" id="palette-grid"></div>
-    </section>
-
-    <section id="text-analysis">
-        <h2>Textual Evolution</h2>
-        <div class="analysis-flex">
-            <div class="analysis-text">
-                <p>Analysis via Voyant Tools reveals a significant discursive shift. While "Beauty" and "Fashion" remain persistent, the 2010s and 2020s see a massive surge in the term <strong>"Unstoppable"</strong>, signifying a move toward "popular feminism" and career-oriented self-fashioning.</p>
-                <br>
-                <ul style="padding-left: 20px;">
-                    <li><strong>1950s/60s:</strong> Focus on "Flair", "Diwali", and "Charmers".</li>
-                    <li><strong>1990s:</strong> Liberalization era introduces "Supermodel", "Designer", and "Substance".</li>
-                    <li><strong>2020s:</strong> Peak frequency of "Unstoppable", "Power", and "Digital".</li>
-                </ul>
-            </div>
-            <div class="analysis-image">
-                <p style="color:#000; font-size: 0.6rem; text-align: center; margin-bottom: 5px;">Voyant Word Cloud: High Frequency Terms</p>
-                <img src="https://via.placeholder.com/500x350/ffffff/000000?text=Voyant+Word+Cloud+Placeholder" alt="Voyant Word Cloud">
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>Jesus and Mary College · DSE: Digital Humanities 2026</p>
-    </footer>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-label">Digital Humanities &nbsp;·&nbsp; Jesus and Mary College &nbsp;·&nbsp; English Department</p>
+    <h1>Behind <em>Femina</em>'s Covers</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">
+      A Digital Humanities Analysis of Colour and Language on <em>Femina</em> Magazine Covers<br> 
+        1959–2024
+    </p>
+  </div>
 </div>
 
+<!-- NAV -->
+<nav>
+  <a href="#overview">Overview</a>
+  <a href="#methodology">Methodology</a>
+  <a href="#tagline">Tagline</a>
+  <a href="#text">Text Analysis</a>
+  <a href="#trends">Trends</a>
+  <a href="#colour">Colour</a>
+  <a href="#interpretation">Interpretation</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- OVERVIEW — no "Abstract" title, collage placed after heading -->
+  <section id="overview">
+    <p class="section-label">Overview</p>
+    <h2 class="section-title">The <em>Project</em></h2>
+    <div class="section-underline"></div>
+
+    <div class="overview-collage">
+      <img src="COLLAGE_1769.jpg" alt="Composite overlay of Femina covers 1959–2024" />
+    </div>
+
+    <div class="abstract-box">
+      <p>This project analyses over 220 cover pages of <em>Femina</em> magazine between 1959–2024 to trace how the magazine visually and textually constructed and reconstructed the "new" Indian womanhood across six decades of socio-cultural change.</p>
+      <p>Using two digital humanities methods, computational text analysis (Voyant Tools) and dominant-colour extraction (ImageColorPicker.com), the study builds a dual dataset visualised through a custom HTML interface. Theoretically, the project draws on feminist visual culture studies and work on Indian women's magazines to read covers as sites where national identity, consumer culture, and gendered embodiment intersect.</p>
+      <p>The findings show a shift from warm ochres and muted earth tones in the 1950s–70s, through the bold pop aesthetics of the 1980s and the high-contrast reds and blues of the liberalisation era, to the saturated, globally inflected palettes of the 2010s–2020s. Decade-specific distinctive words reveal a parallel shift from domestically oriented, beauty-family frames to vocabularies of career, self-fashioning, and global lifestyle, while still centring narrow, upper-class femininities.</p>
+    </div>
+  </section>
+
+  <!-- METHODOLOGY — publication card removed, GitHub note added as small text -->
+  <section id="methodology">
+    <p class="section-label">Approach</p>
+    <h2 class="section-title">Methodology</h2>
+    <div class="section-underline"></div>
+    <div class="prose">
+      <p>This project uses a mixed-methods digital humanities design that combines quantitative text analysis, quantitative-visual colour analysis, and qualitative feminist interpretation.</p>
+    </div>
+    <div class="method-row mt-md">
+      <div class="method-card">
+        <p class="method-card-title">Text Analysis</p>
+        <p>All cover text (headlines, taglines, subheadings) was manually transcribed into seven decade-documents and uploaded as .TXT files into <strong>Voyant Tools</strong>, generating word clouds, full-corpus frequency rankings, trend graphs, and distinctive word analyses per decade. Taglines were treated as a separate analytical category to avoid distorting the editorial vocabulary.</p>
+      </div>
+      <div class="method-card">
+        <p class="method-card-title">Colour Extraction</p>
+        <p>Each of the 193 cover images was uploaded to <strong>ImageColorPicker.com</strong>, from which 9–11 dominant hex codes were extracted per cover, focusing on backgrounds, garments, and major typographic blocks. Decade-level palettes of 10 colours each were then curated from the most recurrent shades across all covers within each decade.</p>
+      </div>
+    </div>
+    <div class="prose mt-md">
+      <p>The text-colour pairing was a deliberate methodological choice: a magazine cover communicates simultaneously through language and image, and to analyse only one would be incomplete. The dataset spans approximately 220+ covers; early decades are underrepresented because fewer covers have been preserved in accessible digital form, with the 2010s yielding the densest coverage.</p>
+    </div>
+
+  </section>
+
+  <!-- TAGLINE EVOLUTION — timeline line now clearly visible -->
+  <section id="tagline">
+    <p class="section-label">Brand Identity Over Time</p>
+    <h2 class="section-title">The Evolution of the <em>Tagline</em></h2>
+    <div class="section-underline"></div>
+    <div class="prose">
+      <p>Femina's tagline is apart from being brand's identity, is also the magazine's statement about the identity of its reader. The shift from <em>flair</em> to <em>substance</em> to <em>generation</em> to <em>unstoppable</em> documents the magazine's evolving construction of what Indian womanhood should aspire to be.</p>
+      <p>That <em>unstoppable</em> appears on every cover in the 2010s and 2020s as a permanent feature of the cover surface can be read as a form of ideological saturation. The reader is told, issue after issue, that they are unstoppable, whether reading about fashion, love, or recipes.</p>
+    </div>
+    <div class="timeline mt-lg">
+      <div class="tl-item">
+        <p class="tl-decade">1950s – 60s</p>
+        <p class="tl-word">Flair</p>
+        <p class="tl-desc">Grace, refinement, and cultivated social presentation. A womanhood rooted in cultural poise within an Anglophone framework.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-decade">1990s</p>
+        <p class="tl-word">Substance</p>
+        <p class="tl-desc">Depth and seriousness, a counterpoint to the glamour economy of post-liberalisation India, even as celebrity and designer vocabulary entered simultaneously.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-decade">2000s</p>
+        <p class="tl-word">Generation</p>
+        <p class="tl-desc">Collective progress, a generation of women building, achieving, and arriving. The cover begins to function as a celebrity platform.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-decade">2010s – 2020s</p>
+        <p class="tl-word">Unstoppable</p>
+        <p class="tl-desc">Individual empowerment as brand. Recurring on every cover, this tagline represents the commodification of feminist vocabulary with empowerment as a product to be purchased and a self to be performed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEXT ANALYSIS — all decade labels use lowercase s (1950s, 1960s etc.) -->
+  <section id="text">
+    <p class="section-label">Voyant Tools · Word Frequency Analysis</p>
+    <h2 class="section-title">Textual Analysis by <em>Decade</em></h2>
+    <div class="section-underline"></div>
+    <div class="prose">
+      <p>The following word clouds are generated from the cover text <strong>without taglines</strong>, so that the editorial vocabulary (headlines, cover lines, subheadings) is visible without the tagline inflating frequency counts. Each cloud represents the statistically distinctive words of that decade relative to the full corpus.</p>
+    </div>
+
+    <div class="mt-lg">
+
+      <div class="decade-block">
+        <p class="decade-tag">Decade</p>
+        <p class="decade-title">1950s &amp; 60s</p>
+        <div class="decade-palette">
+          <span style="background:#d9491a"></span><span style="background:#e08a3b"></span>
+          <span style="background:#c4bc6a"></span><span style="background:#8f8a64"></span>
+          <span style="background:#5d8a88"></span><span style="background:#b85e50"></span>
+          <span style="background:#d09040"></span><span style="background:#834b27"></span>
+          <span style="background:#c6a077"></span><span style="background:#4d1d0e"></span>
+        </div>
+        <div class="wc-img"><img src="WC_1950S60S.jpg" alt="Word cloud 1950s and 60s" /></div>
+        <p class="decade-text">The earliest covers are dominated by <em>look</em>, <em>diwali</em>, <em>charmers</em>, <em>body</em>, <em>child</em>, and <em>mother</em>. <em>Flair</em> and <em>charmers</em> evoke a cultivated womanhood concerned with grace and social presentation. <em>Diwali</em> signals Femina's early integration of Indian cultural identity within an Anglophone framework, while the prominence of <em>child</em> and <em>mother</em> reflects the domestic orientation of the period. The vocabulary density is high (0.704), meaning cover language is varied despite the small corpus.</p>
+      </div>
+
+      <div class="decade-divider"></div>
+
+      <div class="decade-block">
+        <p class="decade-tag">Decade</p>
+        <p class="decade-title">1970s</p>
+        <div class="decade-palette">
+          <span style="background:#b7a130"></span><span style="background:#a94040"></span>
+          <span style="background:#8c7c5c"></span><span style="background:#ab7b5a"></span>
+          <span style="background:#415e5a"></span><span style="background:#894a09"></span>
+          <span style="background:#cbb88c"></span><span style="background:#956d4b"></span>
+          <span style="background:#312e2c"></span><span style="background:#b2a899"></span>
+        </div>
+        <div class="wc-img"><img src="WC_1970S.jpg" alt="Word cloud 1970s" /></div>
+        <p class="decade-text"><em>Women</em> is by far the dominant term, followed by <em>indian</em>, <em>cookbook</em>, <em>miss</em>, <em>community</em>, <em>law</em>, <em>london</em>, and terms related to national life: <em>vote</em>, <em>religion</em>, <em>national</em>, <em>crisis</em>, <em>candidates</em>, <em>fiction</em>. This is the only decade in which Femina consistently positioned women as political citizens. Covers included images of Indira Gandhi; the Emergency (1975–77) and the Indian women's movement both register in the vocabulary. The word <em>law</em> appears in no other decade. Yet <em>cookbook</em> persists alongside <em>community</em> and <em>law</em>, making sure domesticity and civic life coexist.</p>
+      </div>
+
+      <div class="decade-divider"></div>
+
+      <div class="decade-block">
+        <p class="decade-tag">Decade</p>
+        <p class="decade-title">1980s</p>
+        <div class="decade-palette">
+          <span style="background:#ba4a4b"></span><span style="background:#2f7c9d"></span>
+          <span style="background:#c9bf95"></span><span style="background:#b88253"></span>
+          <span style="background:#413b40"></span><span style="background:#597d72"></span>
+          <span style="background:#d78d62"></span><span style="background:#cca38e"></span>
+          <span style="background:#df3d40"></span><span style="background:#e9b25c"></span>
+        </div>
+        <div class="wc-img"><img src="WC_1980S.jpg" alt="Word cloud 1980s" /></div>
+        <p class="decade-text">Dominated by <em>indian</em>, <em>family</em>, <em>diwali</em>, <em>new</em>, <em>super</em>, <em>model</em>, <em>saree</em>, <em>contest</em>. The appearance of <em>model</em>, <em>super</em>, and <em>contest</em> is new as this is the decade in which Femina's Miss India contest gains significant prominence, and the vocabulary of competitive femininity enters the cover language. Yet <em>indian</em>, <em>family</em>, <em>diwali</em>, and <em>saree</em> persist, signalling the co-existence of global aspiration with continued cultural anchoring. The 1980s have the highest vocabulary density (0.927) and readability index (13.858) of any decade.</p>
+      </div>
+
+      <div class="decade-divider"></div>
+
+      <div class="decade-block">
+        <p class="decade-tag">Decade</p>
+        <p class="decade-title">1990s</p>
+        <div class="decade-palette">
+          <span style="background:#dc4345"></span><span style="background:#9a3734"></span>
+          <span style="background:#2ba3b3"></span><span style="background:#1a2c85"></span>
+          <span style="background:#f3ac68"></span><span style="background:#e6805f"></span>
+          <span style="background:#c29078"></span><span style="background:#78606b"></span>
+          <span style="background:#c9c49b"></span><span style="background:#3f352e"></span>
+        </div>
+        <div class="wc-img"><img src="WC_1990S.jpg" alt="Word cloud 1990s" /></div>
+        <p class="decade-text">The dominant terms are <em>woman</em>, <em>women</em>, <em>men</em>, <em>story</em>, <em>miss</em>, <em>new</em>, <em>love</em>, <em>guide</em>, and in the second half of the decade, <em>supermodel</em>, <em>celebrity</em>, <em>designer</em>, <em>aishwarya</em>. The economic liberalisation of 1991 opened Indian markets to global brands and aesthetics. Femina navigates this by using the language of substance and Indian womanhood alongside celebrity, designer goods, and global aspiration, defining tensions of the decade.</p>
+      </div>
+
+      <div class="decade-divider"></div>
+
+      <div class="decade-block">
+        <p class="decade-tag">Decade</p>
+        <p class="decade-title">2000s</p>
+        <div class="decade-palette">
+          <span style="background:#cc3b37"></span><span style="background:#cd5e38"></span>
+          <span style="background:#453890"></span><span style="background:#959a61"></span>
+          <span style="background:#e59333"></span><span style="background:#edcdb9"></span>
+          <span style="background:#2e2922"></span><span style="background:#ebb584"></span>
+          <span style="background:#b28b79"></span><span style="background:#d04084"></span>
+        </div>
+        <div class="wc-img"><img src="WC_2000S.jpg" alt="Word cloud 2000s" /></div>
+        <p class="decade-text">Dominated by <em>generation</em>, <em>new</em>, <em>love</em>, <em>women</em>, <em>life</em>, <em>making</em>, with celebrity names such as <em>saif</em>, <em>sachin</em>, <em>sushmita</em>, <em>lara</em>, <em>dutta</em>, visible for the first time. Celebrity culture is now fully established. <em>Generation</em> and <em>making</em> suggest a discourse of collective progress. The 2000s also begin a trend of increasing engagement with female sexuality and civic life that peaks in the following decade. <em>Universe</em> reflects the continued centrality of beauty pageants to Femina's identity.</p>
+      </div>
+
+      <div class="decade-divider"></div>
+
+      <div class="decade-block">
+        <p class="decade-tag">Decade</p>
+        <p class="decade-title">2010s</p>
+        <div class="decade-palette">
+          <span style="background:#d8383a"></span><span style="background:#26aa97"></span>
+          <span style="background:#e5bc27"></span><span style="background:#93c53c"></span>
+          <span style="background:#4a2224"></span><span style="background:#e0bba0"></span>
+          <span style="background:#dbd3d5"></span><span style="background:#6e9bb0"></span>
+          <span style="background:#c89180"></span><span style="background:#3a2c2c"></span>
+        </div>
+        <div class="wc-img"><img src="WC_2010S.jpg" alt="Word cloud 2010s" /></div>
+        <p class="decade-text">With the tagline removed, dominant terms are <em>women</em>, <em>fashion</em>, <em>sex</em>, <em>beauty</em>, <em>love</em>, <em>india</em>, <em>guide</em>, <em>makeup</em>, <em>skin</em>, <em>home</em>, <em>story</em>, <em>rape</em>, <em>work</em>, and <em>looks</em>. The presence of <em>rape</em> is visible without magnification and is one of the most significant textual findings. Concordance analysis reveals that <em>marital</em> and <em>delhi gang</em> appear to its left, while <em>survivor</em>, <em>myths</em>, and <em>hotline</em> appear to its right, indicating a language of support and advocacy. <em>Section377</em> and <em>queer</em> also appear, tracking the campaign to decriminalise homosexuality culminating in the 2018 Supreme Court ruling.</p>
+      </div>
+
+      <div class="decade-divider"></div>
+
+      <div class="decade-block">
+        <p class="decade-tag">Decade</p>
+        <p class="decade-title">2020s</p>
+        <div class="decade-palette">
+          <span style="background:#e92226"></span><span style="background:#1f1e1b"></span>
+          <span style="background:#74a3ce"></span><span style="background:#c2303c"></span>
+          <span style="background:#6328a0"></span><span style="background:#d83634"></span>
+          <span style="background:#63b2d0"></span><span style="background:#e2c779"></span>
+          <span style="background:#c15054"></span><span style="background:#459297"></span>
+        </div>
+        <div class="wc-img"><img src="WC_2020S.jpg" alt="Word cloud 2020s" /></div>
+        <p class="decade-text">Dominated by <em>women</em>, <em>fashion</em>, <em>beauty</em>, <em>love</em>, <em>india</em>, <em>skin</em>, <em>guide</em>, <em>home</em>, <em>story</em>, <em>looks</em>, <em>makeup</em>. The return of <em>home</em> as a visible term likely reflects the pandemic period. Significantly, the political vocabulary of the 2010s, <em>rape</em>, <em>section377</em>, <em>queer</em>, recedes sharply, suggesting that Femina's engagement with rights-based language was more a function of brand identity than a lasting editorial commitment.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TREND GRAPHS -->
+  <section id="trends">
+    <p class="section-label">Voyant Tools · Longitudinal Trends</p>
+    <h2 class="section-title">Trend <em>Graphs</em></h2>
+    <div class="section-underline"></div>
+    <div class="prose">
+      <p>The following trend graphs track the frequency of key terms across the seven decade-documents, making visible patterns that close reading of individual covers cannot reveal. The asterisk (*) operator captures word families, for example, <em>work*</em> captures work, working, workers; <em>child*</em> captures child, children, childbirth.</p>
+    </div>
+
+    <div class="trend-group mt-lg">
+      <p class="trend-title">Tagline Evolution &nbsp;·&nbsp; <em>flair / substance / generation / unstoppable</em></p>
+      <div class="trend-img"><img src="TREND_TAGLINE.jpg" alt="Trend graph: tagline evolution" /></div>
+      <p class="trend-analysis">The graph tracks <em>flair</em> in the 1950s–60s, <em>substance*</em> peaking in the 1990s, <em>generation*</em> prominent in the 2000s, and <em>unstoppable</em> dominating from the 2010s onward and reaching its highest frequency in the 2020s. The progression from grace to depth to collective progress to individual empowerment-as-brand documents the magazine's evolving construction of aspirational Indian womanhood.</p>
+    </div>
+
+    <div class="trend-group">
+      <p class="trend-title">Work versus Marriage &nbsp;·&nbsp; <em>work* / career* / marriage* / wedding*</em></p>
+      <div class="trend-img"><img src="TREND_WORK_MARRIAGE.jpg" alt="Trend graph: work vs marriage" /></div>
+      <p class="trend-analysis"><em>Work*</em> shows a clear upward trajectory from the 1990s, peaking in the 2010s (9 occurrences). <em>Career*</em> follows a similar but lower arc from the 2000s. Crucially, <em>marriage*</em> and <em>wedding*</em> peak simultaneously in the 2010s, suggesting that work and marriage are not positioned as opposites in Femina's vocabulary, but coexist as simultaneous aspirations for the same reader. The "double burden" of postfeminist theory is here made quantitatively legible.</p>
+    </div>
+
+    <div class="trend-group">
+      <p class="trend-title">Domestic Role Terms &nbsp;·&nbsp; <em>mother* / wife* / mom* / housewives*</em></p>
+      <div class="trend-img"><img src="TREND_DOMESTIC.jpg" alt="Trend graph: domestic roles" /></div>
+      <p class="trend-analysis"><em>Mother*</em> peaks in the 1990s then rises again in the 2020s. <em>Mom*</em> is essentially absent until the 2010s, then rises sharply. <em>Housewives*</em> is nearly absent across the entire corpus. This pattern suggests that the language of maternal identity has been modernised, <em>mom*</em> replacing <em>housewife</em>, maintaining the maternal role while shedding its domestic-confinement connotations.</p>
+    </div>
+
+    <div class="trend-group">
+      <p class="trend-title">Rights &amp; Violence &nbsp;·&nbsp; <em>rape* / survivor* / section377* / queer*</em></p>
+      <div class="trend-img"><img src="TREND_RIGHTS.jpg" alt="Trend graph: rights and violence" /></div>
+      <p class="trend-analysis">All four terms peak in the 2010s and decline into the 2020s. <em>Rape*</em> reaches its highest frequency (9 occurrences), with concordance analysis showing <em>marital</em> and <em>delhi gang</em> to its left and <em>survivor</em>, <em>myths</em>, <em>hotline</em> to its right, a language of advocacy and information-seeking. <em>Section377*</em> (2 occurrences) and <em>queer*</em> (2 occurrences) track the legal campaign to decriminalise homosexuality, culminating in the 2018 Supreme Court ruling. The subsequent decline in the 2020s raises questions about editorial commitment versus brand strategy.</p>
+    </div>
+
+    <div class="trend-group">
+      <p class="trend-title">Sex &amp; Desire &nbsp;·&nbsp; <em>sex* / married* / libido* / desire*</em></p>
+      <div class="trend-img"><img src="TREND_SEX.jpg" alt="Trend graph: sex and desire" /></div>
+      <p class="trend-analysis"><em>Sex*</em> dominates this graph overwhelmingly, reaching 32 occurrences in the 2010s, by far the highest frequency of any single tracked term. <em>Libido*</em> and <em>desire*</em> appear for the first time in this decade. What is notable is that sex is discussed as a standalone category of female autonomy, not exclusively associated with marriage or sanctioned relationships, a significant shift from earlier decades.</p>
+    </div>
+  </section>
+
+  <!-- COLOUR ANALYSIS — palette.html aesthetic preserved, DM Mono replaced with Lato -->
+  <section id="colour">
+    <p class="section-label">ImageColorPicker.com · 193 Covers</p>
+    <h2 class="section-title">Colour <em>Analysis</em></h2>
+    <div class="section-underline"></div>
+    <p class="colour-intro">Between 9 and 11 dominant hex codes were extracted per cover. The decade-level palettes below represent the 10 most recurrent shades across all covers within each decade. The chromatic shift from the earthy, analogue palettes of the 1950s–70s to the saturated teal-lime-yellow-purple palettes of the 2010s–2020s tracks Femina's visual globalisation, making Indian femininity globally legible in a transnational fashion aesthetic.</p>
+
+    <div id="decade-palette-grid"></div>
+  </section>
+
+  <!-- INTERPRETATION -->
+  <section id="interpretation">
+    <p class="section-label">Reading the Archive</p>
+    <h2 class="section-title">Interpretation &amp; <em>Conclusion</em></h2>
+    <div class="section-underline"></div>
+    <div class="prose">
+      <p>The persistence of <em>beauty</em>, <em>fashion</em>, <em>love</em>, and <em>skin</em> across all seven decades shows that, regardless of the political context (the Emergency, liberalisation, Nirbhaya, Section 377, the pandemic), Femina consistently positions Indian womanhood in the female body as the primary site of self-investment and social value. Following McRobbie and Gill, this is an instance of postfeminist sensibility: women interpellated as empowered consumers whose bodies must be continually improved, displayed, and managed.</p>
+      <p>The 1970s form a significant exception. The appearance of <em>law</em>, <em>vote</em>, <em>candidates</em>, and <em>community</em> marks the only decade in which Femina consistently positioned women as political citizens. The disappearance of this political vocabulary in the following decade indicates how quickly the possibilities opened by the Emergency and the women's movement were absorbed back into consumerist visual culture.</p>
+      <p>The work-versus-marriage trend graph visualises the "double burden" critiqued by postfeminist theory: in the 2010s, <em>work*</em> and <em>career*</em> rise alongside <em>marriage*</em>, <em>wedding*</em>, and <em>husband*</em>. The "new Indian woman" is not positioned as having to choose, she is expected to have and excel at both. This fully supports Menon's argument that career becomes another axis along which womanhood is commodified, without dismantling the expectation of heterosexual marriage.</p>
+      <p>Colour analysis extends this frame into visual semiotics. The chromatic shift from earthy, analogue palettes to saturated, globally legible chromatic shades tracks Femina's visual globalisation, a shift that documents how Indian femininity is staged for transnational circulation. Whether this represents cultural confidence or homogenisation under consumer capitalism remains an open question, but one that digital methods now make it possible to pose empirically.</p>
+    </div>
+
+    <div class="finding-cards mt-lg">
+      <div class="finding-card">
+        <p class="finding-card-label">Key Finding</p>
+        <p class="finding-card-title"><b>The 1970s Exception</b></p>
+        <p>The only decade in which <em>Femina</em> addressed women as political citizens, not merely consumers. Law, vote, candidates, and Indira Gandhi's image appear on covers but never repeated in any other period.</p>
+      </div>
+      <div class="finding-card">
+        <p class="finding-card-label">Key Finding</p>
+        <p class="finding-card-title"><b>Tagline as Ideology</b></p>
+        <p><em>Unstoppable</em> saturates every cover from 2010 onward, demonstrating how feminist vocabulary becomes brand identity, detached from structural critique.</p>
+      </div>
+      <div class="finding-card">
+        <p class="finding-card-label">Key Finding</p>
+        <p class="finding-card-title"><b>Colour shifts for Globalisation</b></p>
+        <p>The shift from warm ochres and earth tones (1950s–70s) to high-contrast teal, lime, and purple (2010s–20s) tracks Indian femininity being styled for transnational legibility.</p>
+      </div>
+      <div class="finding-card">
+        <p class="finding-card-label">Key Finding</p>
+        <p class="finding-card-title"><b>The Double Burden</b></p>
+        <p>Work and marriage peak simultaneously in the 2010s. <em>Femina</em>'s "empowered" woman is not freed from domesticity, she is expected to excel at both labour and family simultaneously.</p>
+      </div>
+    </div>
+
+    <div class="prose mt-lg">
+      <p><strong>A note on limitations:</strong> Femina is an English-language magazine priced for and directed at urban, upper-/upper-middle-class women. The "Indian womanhood" on its covers is therefore a classed fraction of India's female population. Rural women, working-class women, Dalit women, and women for whom the beauty economy is economically inaccessible are neither implied readers nor visible subjects. The data analyses a construction of Indian womanhood, not Indian womanhood as a whole. Additionally, the corpus is incomplete for early decades (4 covers for the 1950s; 1 for the 1960s), making statistical claims for those periods indicative rather than conclusive.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-title">Behind <em>Femina's</em> Covers</p>
+  <div class="footer-rule"></div>
+  <p>
+    A Digital Humanities Project &nbsp;·&nbsp; English Department<br>
+    Jesus and Mary College<br><br>
+    Dataset: 220+ covers &nbsp;·&nbsp; 1959–2024 &nbsp;·&nbsp; Tools: Voyant Tools, ImageColorPicker.com
+  </p>
+  <div class="footer-rule" style="margin-top:28px;"></div>
+  <p style="font-size:0.62rem;color:#4a5568;letter-spacing:0.08em;margin-top:16px;line-height:2;">
+    &copy; 2026 Jesus and Mary College, University of Delhi. All rights reserved.<br>
+    The dataset, source code, and visualisations for this project are available on our
+    <a href="#" style="color:var(--blue-accent);text-decoration:none;border-bottom:1px solid rgba(90,143,194,0.35);transition:border-color 0.2s;" onmouseenter="this.style.borderColor='var(--blue-accent)'" onmouseleave="this.style.borderColor='rgba(90,143,194,0.35)'">GitHub repository</a>.
+    Reproduction or use of any material requires attribution.
+  </p>
+</footer>
+
+<!-- DECADE PALETTE SCRIPT — organised by era, styled to site design system -->
 <script>
-const decades = [
-    { label: "1959", note: "Partial — July, Aug, Oct, Nov", colors: ["#d9491a","#e08a3b","#c4bc6a","#8f8a64","#5d8a88","#b85e50","#d09040","#834b27","#c6a077","#4d1d0e"] },
-    { label: "1960s", note: "1960–1969", colors: ["#c08a56","#d97040","#6da068","#bdb090","#4a6d85","#7a6450","#477b55","#c9ab7c","#b48763","#3a3030"] },
-    { label: "1970s", note: "1970–1979", colors: ["#b7a130","#a94040","#8c7c5c","#ab7b5a","#415e5a","#894a09","#cbb88c","#956d4b","#312e2c","#b2a899"] },
-    { label: "1980s", note: "1980–1989", colors: ["#ba4a4b","#2f7c9d","#c9bf95","#b88253","#413b40","#597d72","#d78d62","#cca38e","#df3d40","#e9b25c"] },
-    { label: "1990s", note: "1990–1999", colors: ["#dc4345","#9a3734","#2ba3b3","#1a2c85","#f3ac68","#e6805f","#c29078","#78606b","#c9c49b","#3f352e"] },
-    { label: "2000s", note: "2000–2009", colors: ["#cc3b37","#cd5e38","#453890","#959a61","#e59333","#edcdb9","#2e2922","#ebb584","#b28b79","#d04084"] },
-    { label: "2010s", note: "2010–2019", colors: ["#d8383a","#26aa97","#e5bc27","#93c53c","#4a2224","#e0bba0","#dbd3d5","#6e9bb0","#c89180","#3a2c2c"] },
-    { label: "2020–2024", note: "Partial — through 2024", colors: ["#e92226","#1f1e1b","#74a3ce","#c2303c","#6328a0","#d83634","#63b2d0","#e2c779","#c15054","#459297"] }
-];
+  const decades = [
+    { label: "1959",       note: "Partial — July, Aug, Oct, Nov only",  colors: ["#d9491a","#e08a3b","#c4bc6a","#8f8a64","#5d8a88","#b85e50","#d09040","#834b27","#c6a077","#4d1d0e"] },
+    { label: "1960s",      note: "1960–1969 · Full decade",              colors: ["#c08a56","#d97040","#6da068","#bdb090","#4a6d85","#7a6450","#477b55","#c9ab7c","#b48763","#3a3030"] },
+    { label: "1970s",      note: "1970–1979 · Full decade",              colors: ["#b7a130","#a94040","#8c7c5c","#ab7b5a","#415e5a","#894a09","#cbb88c","#956d4b","#312e2c","#b2a899"] },
+    { label: "1980s",      note: "1980–1989 · Full decade",              colors: ["#ba4a4b","#2f7c9d","#c9bf95","#b88253","#413b40","#597d72","#d78d62","#cca38e","#df3d40","#e9b25c"] },
+    { label: "1990s",      note: "1990–1999 · Full decade",              colors: ["#dc4345","#9a3734","#2ba3b3","#1a2c85","#f3ac68","#e6805f","#c29078","#78606b","#c9c49b","#3f352e"] },
+    { label: "2000s",      note: "2000–2009 · Full decade",              colors: ["#cc3b37","#cd5e38","#453890","#959a61","#e59333","#edcdb9","#2e2922","#ebb584","#b28b79","#d04084"] },
+    { label: "2010s",      note: "2010–2019 · Full decade",              colors: ["#d8383a","#26aa97","#e5bc27","#93c53c","#4a2224","#e0bba0","#dbd3d5","#6e9bb0","#c89180","#3a2c2c"] },
+    { label: "2020–2024",  note: "Partial — through 2024",               colors: ["#e92226","#1f1e1b","#74a3ce","#c2303c","#6328a0","#d83634","#63b2d0","#e2c779","#c15054","#459297"] }
+  ];
 
-const grid = document.getElementById('palette-grid');
+  const grid = document.getElementById('decade-palette-grid');
+  grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;';
 
-decades.forEach(d => {
+  decades.forEach(d => {
     const card = document.createElement('div');
-    card.className = 'decade-card';
-    const swatchHTML = d.colors.map(c => `<div class="swatch" style="background:${c}"><span class="hex-tip">${c}</span></div>`).join('');
-    const hexHTML = d.colors.map(c => `<div class="hex-item"><div class="hex-dot" style="background:${c}"></div><span>${c}</span></div>`).join('');
+    card.style.cssText = [
+      'background:var(--off-white)',
+      'border:1px solid var(--rule)',
+      'border-radius:6px',
+      'padding:28px 28px 24px',
+      'transition:transform 0.22s ease,border-color 0.22s ease,box-shadow 0.22s ease'
+    ].join(';');
+    card.onmouseenter = () => {
+      card.style.transform = 'translateY(-3px)';
+      card.style.borderColor = 'var(--blue-mid)';
+      card.style.boxShadow = '0 6px 20px rgba(90,143,194,0.10)';
+    };
+    card.onmouseleave = () => {
+      card.style.transform = '';
+      card.style.borderColor = 'var(--rule)';
+      card.style.boxShadow = '';
+    };
+
+    const swatches = d.colors.map(c =>
+      `<div style="flex:1;background:${c};transition:flex 0.22s ease;cursor:crosshair;"
+            onmouseenter="this.style.flex='2.5'" onmouseleave="this.style.flex='1'"
+            title="${c}"></div>`
+    ).join('');
+
+    const hexList = d.colors.map(c =>
+      `<div style="display:flex;align-items:center;gap:5px;">
+         <div style="width:8px;height:8px;border-radius:50%;background:${c};flex-shrink:0;"></div>
+         <span style="font-family:var(--body);font-size:0.46rem;letter-spacing:0.06em;color:var(--muted);">${c}</span>
+       </div>`
+    ).join('');
 
     card.innerHTML = `
-        <div class="decade-label">${d.label}</div>
-        <div class="decade-note">${d.note}</div>
-        <div class="swatches">${swatchHTML}</div>
-        <div class="hex-list">${hexHTML}</div>
+      <div style="font-family:var(--body);font-size:0.58rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--blue-accent);margin-bottom:6px;">${d.note}</div>
+      <div style="font-family:var(--serif);font-weight:300;font-size:1.55rem;color:var(--ink);margin-bottom:18px;letter-spacing:0.02em;">${d.label}</div>
+      <div style="display:flex;height:52px;border-radius:3px;overflow:hidden;margin-bottom:14px;">${swatches}</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;">${hexList}</div>
     `;
     grid.appendChild(card);
-});
+  });
 </script>
 
 </body>
