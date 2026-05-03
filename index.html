@@ -738,7 +738,7 @@
     <h2 class="section-title">Textual Analysis by <em>Decade</em></h2>
     <div class="section-underline"></div>
     <div class="prose">
-      <p>Even though the following word clouds are generated from the cover text with the <strong>taglines</strong>, their analysis is done without them as taglines inflate the frequency counts. Each cloud represents the statistically distinctive words of that decade relative to the full corpus.</p>
+      <p>Even though the following word clouds are generated from the cover text with the <strong>taglines</strong>, the analysis here treats them separately, as taglines inflate the frequency counts. Each cloud represents the statistically distinctive words of that decade relative to the full corpus.</p>
     </div>
 
     <div class="mt-lg">
@@ -1003,21 +1003,36 @@
     };
 
     const swatches = d.colors.map(c =>
-  `<div style="flex:1;background:${c};transition:flex 0.28s ease;cursor:crosshair;"
+  `<div style="flex:1;background:${c};transition:flex 0.28s ease;cursor:crosshair;position:relative;"
         onmouseenter="this.style.flex='2.5'"
         onmouseleave="if(!this.dataset.pinned){this.style.flex='1'}"
         onclick="
+          var siblings = this.parentElement.querySelectorAll('div');
+          siblings.forEach(function(s){
+            if(s !== this){
+              delete s.dataset.pinned;
+              s.style.flex='1';
+              s.style.outline='none';
+              var tip = s.querySelector('span');
+              if(tip) tip.style.opacity='0';
+            }
+          }.bind(this));
           if(this.dataset.pinned){
             delete this.dataset.pinned;
             this.style.flex='1';
             this.style.outline='none';
+            var tip = this.querySelector('span');
+            if(tip) tip.style.opacity='0';
           } else {
             this.dataset.pinned='1';
             this.style.flex='3.5';
             this.style.outline='2px solid rgba(255,255,255,0.6)';
+            var tip = this.querySelector('span');
+            if(tip) tip.style.opacity='1';
           }
-        "
-        title="${c}"></div>`
+        ">
+    <span style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-family:var(--body);font-size:0.52rem;letter-spacing:0.06em;background:rgba(0,0,0,0.55);color:#fff;padding:2px 5px;border-radius:2px;opacity:0;transition:opacity 0.2s;white-space:nowrap;pointer-events:none;">${c}</span>
+  </div>`
 ).join('');
 
     const hexList = d.colors.map(c =>
